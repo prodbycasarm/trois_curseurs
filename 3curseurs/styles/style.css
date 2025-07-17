@@ -105,7 +105,7 @@ body{
     width: 100%;
     height: 100%;
     
-    background-image: url('universe.jpg');
+    background-image: url('../images/universe.jpg');
     background-size: cover;
     animation: backgroundScroll 100s linear infinite; /* Adjust duration and timing function as needed */
     
@@ -143,12 +143,12 @@ body{
   border-radius: 0%; 
 }
 
-.front { transform: translateZ(250px); background-image: url('main-planet-1.jpg'); }
-.back { transform: translateZ(-250px)  rotateZ(-180deg) rotateZ(0deg); background-image: url('main-planet-3.jpg'); }
-.right { transform: rotateY(-90deg) translateZ(250px); background-image: url('main-planet-4.jpg'); }
-.left { transform: rotateY(90deg) translateZ(250px); background-image: url('main-planet-2.jpg'); }
-.top { transform: rotateX(90deg) translateZ(251px); background-image: url('main-planet-top.jpg'); }
-.bottom { transform: rotateX(-90deg) rotateZ(90deg) translateZ(251px) ; background-image: url('main-planet-bottom.jpg'); }
+.front { transform: translateZ(250px); background-image: url('../images/main-planet-1.jpg'); }
+.back { transform: translateZ(-250px)  rotateZ(-180deg) rotateZ(0deg); background-image: url('../images/main-planet-3.jpg'); }
+.right { transform: rotateY(-90deg) translateZ(250px); background-image: url('../images/main-planet-4.jpg'); }
+.left { transform: rotateY(90deg) translateZ(250px); background-image: url('../images/main-planet-2.jpg'); }
+.top { transform: rotateX(90deg) translateZ(251px); background-image: url('../images/-planet-top.jpg'); }
+.bottom { transform: rotateX(-90deg) rotateZ(90deg) translateZ(251px) ; background-image: url('../images/main-planet-bottom.jpg'); }
 
 @keyframes rotate {
   0% { transform: rotateY(0deg) ; }
@@ -180,7 +180,7 @@ body{
   padding: 30px;
   border-radius: 10px;
   z-index: 9999;
-  background-image: url('logo_2.png');
+  background-image: url('../images/logo_2.png');
   background-size: 35px;
   background-repeat: no-repeat;
   background-position: center;
