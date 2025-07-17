@@ -1,0 +1,261 @@
+/* étoiles */
+.shooting-star {
+  position: absolute;
+  width: 0.2px;
+  height: 0.2px;
+  background: rgb(255, 255, 255);
+  animation: shooting 50s linear infinite;
+  opacity: 0; /* Hide initially */
+  pointer-events: none;
+  
+}
+
+/* Animation for shooting stars */
+@keyframes shooting {
+  0% {
+      opacity: 1; /* Start visible */
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 1px 1px white; /* Initial box-shadow for trailing effect */
+  }
+  100% {
+      opacity: 0; /* End invisible */
+      transform: translate(-500%, -500%); /* Move off-screen */
+      box-shadow: none; /* Remove box-shadow at the end */
+  }
+}
+/* Curseur 02 */
+.cursor {
+  width: 50px;
+  height: 50px;
+  border: 2px solid white;
+  border-radius: 50%;
+  position: absolute;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+  animation: cursorAnim 0.5s infinite alternate;
+  pointer-events: none;
+}
+
+.cursor::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  border: 8px solid rgb(139, 50, 255);
+  border-radius: 50%;
+  opacity: 0.5;
+  top: -8px;
+  left: -8px;
+  animation: cursorAnim2 0.5s infinite alternate;
+}
+
+@keyframes cursorAnim {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.7);
+  }
+}
+@keyframes cursorAnim2 {
+  from {
+    transform: scale(1.3);
+  }
+  to {
+    transform: scale(0.4);
+  }
+}
+@keyframes cursorAnim3 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(3);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+.expand {
+  animation: cursorAnim3 0.5s forwards;
+  border: 4px solid rgb(0, 255, 255);
+}
+
+p {
+  color: white;
+  font-family: "arial";
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.4em;
+}
+p a {
+  color: teal;
+}
+/* Menu */
+@keyframes borderGradientAnimation {
+  0% {
+    box-shadow: 0 0 0 1px rgba(170, 0, 254, 0.2), 0 0 0 1px rgba(145, 0, 248, 0.4), 0 0 0 1px rgba(153, 0, 255, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(255, 35, 237, 0.2), 0 0 0 3px rgba(128, 46, 252, 0.4), 0 0 0 3px rgba(175, 4, 184, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 1px rgba(255, 49, 190, 0.2), 0 0 0 1px rgba(248, 0, 223, 0.4), 0 0 0 1px rgba(248, 32, 255, 0.6);
+  }
+}
+
+#menu {
+  font-family: Arial, Helvetica, sans-serif;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(59, 58, 58, 0.525);
+  padding: 30px;
+  border-radius: 10px;
+  z-index: 9999;
+  background-image: url('../logo_2.png');
+  background-size: 35px;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: borderGradientAnimation 5s infinite;
+}
+
+#menu:hover {
+  background-size: 0; /* When menu is hovered, make background size zero to make it disappear */
+}
+
+
+
+  
+  #menu ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    position: relative; 
+    overflow: hidden; 
+    transition: max-height 1.5s ease, max-width 1.5s ease; 
+    max-height: 0; 
+    max-width: 0; 
+  }
+  
+  #menu:hover ul {
+    max-height: 400px; /* Increased maximum height for better usability */
+    max-width: 1800px; /* Adjusted maximum width for better readability */
+    padding: 10px; /* Reduced padding for a cleaner layout */
+  }
+
+  
+  #menu ul li {
+    margin-bottom: 20px; /* Increased margin between menu items for better separation */
+  }
+  
+  #menu ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px; /* Reduced font size for better compatibility with smaller screens */
+    font-weight: bold;
+    position: relative;
+    transition: color 0.2s ease-in-out; /* Add a transition for color change */
+  }
+  
+  #menu ul li a:hover {
+    color: #ff36c3; /* Change color on hover */
+    animation: textHoverAnimation 4.5s ease-in-out; /* Apply the keyframe animation on hover */
+  }
+  
+  
+  /*Under menu line*/
+  #menu ul li a::after {
+    content: ''; 
+    position: absolute;
+    left: 0;
+    bottom: -2px; 
+    width: 100%;
+    height: 5px; 
+    background-image: linear-gradient(to right, #00c8ff, #fb03ff); 
+    background-size: 200%;
+    animation: gradientAnimation 5s infinite;
+    transition: width 1s ease; /* Reduced transition duration */
+  }
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 100% 50%, 100% 0%;
+    }
+    50% {
+      background-position: 0% 50%, 0% 0%;
+    }
+    100% {
+      background-position: 100% 50%, 100% 0%;
+    }
+  }
+  
+  #menu ul li a:hover::after {
+    width: 0; 
+    animation: gradientAnimation 2s linear infinite; 
+  }
+  
+  /* Animation for gradient */
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+/* Animation for gradient */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+/* Background */
+html {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  background-image: 
+    url('cloud_1.png'),
+    url('mountain.jpg'); 
+    cursor: none;
+  background-position: 
+    0 -90%, /* Adjust the initial position of the cloud */
+    0 90;
+  
+  background-size: 
+    auto, 
+    cover; /* Make the mountain image cover the entire screen */
+  
+  animation: para 50s infinite linear;
+}
+
+@keyframes para {
+  100% {
+    background-position: 
+      100% -90%, /* Adjust the cloud's ending position */
+      0 0; /* Keep the mountain's position static */
+  }
+}
+
+
+
+
+
+
+
+
+
+/*# sourceMappingURL=styles_c2.css.map */

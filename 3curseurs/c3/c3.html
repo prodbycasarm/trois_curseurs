@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Curseur Ragnarök</title>
+    <link rel="stylesheet" href="styles_c3.css">
+    <link rel="stylesheet" href="styles_feu.css">
+    <link rel="icon" type="image/x-icon" href="../logo_orange.png">
+</head>
+<style>
+    /* inversion filter to favicon when in dark mode */
+    @media (prefers-color-scheme: Sombre) {
+        /* Invert the colors */
+        #favicon-inverted {
+            filter: invert(1);
+        }
+    }
+</style>
+<body>
+    <img id="favicon-inverted" src="../logo_orange.png" style="display: none;" alt="Inverted Favicon">
+
+    <div id="wrap">
+        <div class="cursor"></div>
+    </div>
+    <div id="container">
+        <div id="menu">
+            <ul>
+                <li><a href="../index.html">Curseur Comet</a></li>
+                <li><a href="..\c2\c2.html">Curseur Euphoria</a></li>
+                <li><a href="#">Curseur Ragnarök</a></li>
+            </ul>
+        </div>
+
+        <!-- Fire balls -->
+        <div class="trail wrap2" style="top: 40%; left: 10%; animation-delay: 2s;"></div>
+        <div class="trail wrap2" style="top: 60%; left: 15%; animation-delay: 3s;"></div>
+        <div class="trail wrap2" style="top: 80%; left: 20%; animation-delay: 4s;"></div>
+        <div class="trail wrap2" style="top: 10%; left: 50%; animation-delay: 1s;"></div>
+        <div class="trail wrap2" style="top: 45%; left: 90%; animation-delay: 2s;"></div>
+        <div class="trail wrap2" style="top: 65%; left: 75%; animation-delay: 3s;"></div>
+        <div class="trail wrap2" style="top: 85%; left: 60%; animation-delay: 4s;"></div>
+        <div class="trail wrap2 " style="top: 20%; left: 5%; animation-delay: 1s;"></div>
+        <div class="trail wrap2" style="top: 40%; left: 10%; animation-delay: 2s;"></div>
+        <div class="trail wrap2" style="top: 60%; left: 15%; animation-delay: 3s;"></div>
+        <div class="trail wrap2" style="top: 80%; left: 20%; animation-delay: 4s;"></div>
+        <div class="trail wrap2" style="top: 10%; left: 50%; animation-delay: 5s;"></div>
+        <div class="trail wrap2" style="top: 45%; left: 90%; animation-delay: 6s;"></div>
+        <div class="trail wrap2" style="top: 65%; left: 75%; animation-delay: 7s;"></div>
+        <div class="trail wrap2" style="top: 85%; left: 60%; animation-delay: 8s;"></div>
+        <div class="trail wrap2" style="top: 25%; left: 80%; animation-delay: 9s;"></div>
+        <div class="trail wrap2" style="top: 50%; left: 70%; animation-delay: 10s;"></div>
+        <div class="trail wrap2" style="top: 70%; left: 30%; animation-delay: 11s;"></div>
+        <div class="trail wrap2" style="top: 90%; left: 85%; animation-delay: 12s;"></div>
+    </div>
+
+    <script src="jquery.min.js"></script>
+    <script>
+
+function createTrail() {
+  const trail = document.createElement("div");
+  trail.classList.add("trail");
+  document.body.appendChild(trail);
+  
+  setTimeout(() => {
+    trail.remove();
+  }, 5000); // Adjust the duration of the trail
+}
+
+  
+
+        const cursor = document.querySelector('.cursor');
+
+        document.addEventListener('mousemove', e => {
+            cursor.style.top = (e.pageY - 0) + "px";
+            cursor.style.left = (e.pageX - 0) + "px";
+        });
+
+        document.addEventListener('click', () => {
+            cursor.classList.add("expand");
+
+            setTimeout(() => {
+                cursor.classList.remove("expand");
+            }, 400);
+        });
+
+        // Trail derriere le premier curseur
+        $(document).ready(function(){
+            var mousePos = {};
+
+            function getRandomInt(min, max) {
+                return Math.round(Math.random() * (max - min + 1)) + min;
+            }
+
+            $(window).mousemove(function(e) {
+                mousePos.x = e.pageX;
+                mousePos.y = e.pageY;
+            });
+
+            $(window).mouseleave(function(e) {
+                mousePos.x = -1;
+                mousePos.y = -1;
+            });
+
+            var draw = setInterval(function(){
+                if(mousePos.x > 0 && mousePos.y > -10){
+
+                    var range = 10; // Adjust the range here
+
+                    var sizeInt = getRandomInt(20, 5);
+                    var size = "height: " + sizeInt + "px; width: " + sizeInt + "px;";
+
+                    var left = "left: " + getRandomInt(mousePos.x - range - sizeInt, mousePos.x + range) + "px;";
+
+                    var top = "top: " + getRandomInt(mousePos.y - range - sizeInt, mousePos.y + range) + "px;"; 
+
+                    var style = left + top + size;
+                    $("<div class='ball' style='" + style + "'></div>").appendTo('#wrap').one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function(){$(this).remove();}); 
+                }
+            }, 10); // Adjust the interval here (milliseconds)
+        });
+
+
+
+        //For Fire balls
+        $(document).ready(function(){
+    var mousePos = {};
+
+    function getRandomInt(min, max) {
+        return Math.round(Math.random() * (max - min + 1)) + min;
+    }
+
+    $('.trail').each(function() {
+        var trailPos = $(this).offset();
+        $(this).css('top', trailPos.top + 'px');
+        $(this).css('left', trailPos.left + 'px');
+    });
+
+    var draw = setInterval(function(){
+        $('.trail').each(function() {
+            var trailPos = $(this).offset();
+            mousePos.x = trailPos.left;
+            mousePos.y = trailPos.top;
+
+            if(mousePos.x > 0 && mousePos.y > 0){
+
+                var range = 500; // Adjust the range here
+
+                var sizeInt = getRandomInt(20, 2);
+                var size = "height: " + sizeInt + "px; width: " + sizeInt + "px;";
+
+                var left = "left: " + getRandomInt(mousePos.x - range - sizeInt, mousePos.x + range) + "px;";
+
+                var top = "top: " + getRandomInt(mousePos.y - range - sizeInt, mousePos.y + range) + "px;"; 
+
+                 }
+        });
+    }, 100); // Adjust the interval here (milliseconds)
+});
+
+       
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>Curseur Comet</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="logo_bleu.png">
+    
+    
+    <style>
+
+        
+    </style>
+</head>
+<body>
+    <div id="wrap"></div>
+    <div id="container" >
+        <div id="bigbackground">
+            <div id="stars"></div>
+            <div id="background">
+                <div class="cube">
+                    <div class="front"></div>
+                    <div class="back"></div>
+                    <div class="right"></div>
+                    <div class="left"></div>
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                    <div id="planet"></div>
+                </div>
+            </div>
+        </div>
+        <div class="curseur" id="cursor"></div>
+        <!-- Menu -->
+        <div id="menu">
+            <ul>
+                <li><a href="#">Curseur Comet</a></li>
+                <li><a href="c2/c2.html">Curseur Euphoria</a></li>
+                <li><a href="c3/c3.html">Curseur Ragnarök</a></li>
+                <!-- Add more menu items as needed -->
+            </ul>
+        </div>
+
+        <!-- Shooting Stars -->
+        <div class="shooting-star" style="top: 20%; left: 5%; animation-delay: 1s;"></div>
+        <div class="shooting-star" style="top: 40%; left: 10%; animation-delay: 2s;"></div>
+        <div class="shooting-star" style="top: 60%; left: 15%; animation-delay: 3s;"></div>
+        <div class="shooting-star" style="top: 80%; left: 20%; animation-delay: 4s;"></div>
+        <div class="shooting-star" style="top: 10%; left: 50%; animation-delay: 1s;"></div>
+        <div class="shooting-star" style="top: 45%; left: 90%; animation-delay: 2s;"></div>
+        <div class="shooting-star" style="top: 65%; left: 75%; animation-delay: 3s;"></div>
+        <div class="shooting-star" style="top: 85%; left: 60%; animation-delay: 4s;"></div>
+        <div class="shooting-star " style="top: 20%; left: 5%; animation-delay: 1s;"></div>
+        <div class="shooting-star" style="top: 40%; left: 10%; animation-delay: 2s;"></div>
+        <div class="shooting-star" style="top: 60%; left: 15%; animation-delay: 3s;"></div>
+        <div class="shooting-star" style="top: 80%; left: 20%; animation-delay: 4s;"></div>
+        <div class="shooting-star" style="top: 10%; left: 50%; animation-delay: 5s;"></div>
+        <div class="shooting-star" style="top: 45%; left: 90%; animation-delay: 6s;"></div>
+        <div class="shooting-star" style="top: 65%; left: 75%; animation-delay: 7s;"></div>
+        <div class="shooting-star" style="top: 85%; left: 60%; animation-delay: 8s;"></div>
+        <div class="shooting-star" style="top: 25%; left: 80%; animation-delay: 9s;"></div>
+        <div class="shooting-star" style="top: 50%; left: 70%; animation-delay: 10s;"></div>
+        <div class="shooting-star" style="top: 70%; left: 30%; animation-delay: 11s;"></div>
+        <div class="shooting-star" style="top: 90%; left: 85%; animation-delay: 12s;"></div>
+        <!-- Shooting Stars avec trail -->
+        <div class=" trail" style="top: -5%; left: 90%; animation-delay: 1s;"></div>
+        <div class=" trail" style="top: -5%; left: 30%; animation-delay: 3s;"></div>
+        <div class=" trail" style="top: -5%; left: 70%; animation-delay: 7s;"></div>
+        <div class=" trail" style="top: -5%; left: 20%; animation-delay: 5s;"></div>
+    </div>
+    <!-- Effet trail-->
+    <script src="jquery.min.js"></script>
+
+<script>
+   $(document).ready(function() {
+    const cursor = $(".curseur");
+    const wrap = $("#wrap");
+
+    let lastMouseX = 0;
+    let lastMouseY = 0;
+    let lastTimestamp = Date.now();
+
+    $(document).mousemove(function(e) {
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        const deltaX = mouseX - lastMouseX;
+        const deltaY = mouseY - lastMouseY;
+        const deltaTime = Date.now() - lastTimestamp;
+
+        const speedX = Math.abs(deltaX) / deltaTime;
+        const speedY = Math.abs(deltaY) / deltaTime;
+
+        cursor.css({
+            top: mouseY + "px",
+            left: mouseX + "px"
+        });
+
+        lastMouseX = mouseX;
+        lastMouseY = mouseY;
+        lastTimestamp = Date.now();
+    });
+
+    
+    // trail sur le curseur
+ 
+    function getRandomInt(min, max) {
+    return Math.round(Math.random() * (max - min + 1)) + min;
+}
+
+let range = 20; // Initial range
+
+    function createBall() {
+        if (lastMouseX > 0 && lastMouseY > 0) {
+            const sizeInt = getRandomInt(2, 3);
+            const left = getRandomInt(lastMouseX - range - sizeInt, lastMouseX + range);
+            const top = getRandomInt(lastMouseY - range - sizeInt, lastMouseY + range);
+
+            const ball = $("<div>").addClass('ball').css({
+                left: left + 'px',
+                top: top + 'px',
+                width: sizeInt + 'px',
+                height: sizeInt + 'px'
+            });
+
+            wrap.append(ball);
+            ball.one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function() {
+                $(this).remove();
+            });
+        }
+    }
+
+    // Click event pour changer Ã  100
+    $(document).click(function() {
+    range = 100; 
+    
+    setTimeout(function() {
+        range = 20; 
+    }, 1000);
+});
+
+    setInterval(createBall, 0.01);
+});
+
+</script>
+
+</body>
+</html>
