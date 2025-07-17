@@ -12,7 +12,7 @@
   <p>Each version features animated cursor trails, visual feedback on click, and themed backgrounds for an engaging user experience.</p>
 
   <h2>🚀 Live Demo</h2>
-  <p>👉 <a href="https://your-username.github.io/curseur-project/">View the Demo</a> <em>(replace with your GitHub Pages URL)</em></p>
+  <p>👉 <a href="https://3curseurs.casarm.com/index.html">View the Demo</a> <em>(replace with your GitHub Pages URL)</em></p>
 
   <h2>📁 Project Structure</h2>
   <pre><code>.
